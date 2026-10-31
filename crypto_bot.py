@@ -3,7 +3,19 @@ import json
 import sqlite3
 import requests
 import websockets
+from flask import Flask
+import threading
 
+app = Flask(__name__)
+
+@app.route('/')
+def home():
+    return "Bot is running 24/7!"
+
+def run_web():
+    app.run(host='0.0.0.0', port=10000)
+
+threading.Thread(target=run_web, daemon=True).start()
 # --- البيانات الأساسية ---
 TELEGRAM_TOKEN = "9275712134:AAGuamkQZfgyAJ3ufdTlIUgCcdz6WAIzG5Q"
 CHAT_ID = "7110219104"
